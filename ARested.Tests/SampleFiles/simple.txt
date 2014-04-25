@@ -1,0 +1,3 @@
+[GET] https://localhost:6143/geoevent/admin
+[GET] https://localhost:6143/geoevent/admin/inputs
+[POST] https://localhost:6143/geoevent/admin/input

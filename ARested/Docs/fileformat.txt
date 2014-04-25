@@ -1,0 +1,30 @@
+RestStubb Parameters:
+ProjectName: GeoEvent
+UrlMetadata: [{},{}]
+
+[GET] https://localhost:6143/geoevent/admin
+1.) fetch url data
+2.) convert to classes
+	{ProjectName}\rest\models\admin\*
+3.) keep a model cache to determine if we have duplicates, only keep one!
+4.) create method stub for each method complete with return types and parameters
+	methodNameConvention: {Method}{ProjectName}{URLPathSplit on segments}
+	Example: GetGeoEventAdmin
+	
+[GET] [POST] https://localhost:6143/geoevent/admin/inputs 
+1.) fetch url data
+2.) convert to classes
+	{ProjectName}\rest\models\admin\inputs\*
+3.) keep a model cache to determine if we have duplicates, only keep one!
+4.) create method stub for each method complete with return types and parameters
+	methodNameConvention: {Method}{ProjectName}{URLPathSplit on segments}
+	Example: GetGeoEventAdminInputs, PostGeoEventAdminInputs
+	
+[GET] [POST] [DELETE] https://localhost:6143/geoevent/admin/outputs
+1.) fetch url data
+2.) convert to classes
+	{ProjectName}\rest\models\admin\inputs\*
+3.) keep a model cache to determine if we have duplicates, only keep one!
+4.) create method stub for each method complete with return types and parameters
+	methodNameConvention: {Method}{ProjectName}{URLPathSplit on segments}
+	Example: GetGeoEventAdminOutputs, PostGeoEventAdminOutputs, DeleteGeoEventAdminOutputs
