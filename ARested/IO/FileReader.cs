@@ -14,9 +14,9 @@ namespace RestStubb.IO
     /// </summary>
     public class FileReader
     {
-        public SimpleFile LoadSimpleFile(string filename)
+        public IStubResource LoadSimpleFile(string filename)
         {
-            var simpleFile = new SimpleFile() {Stubs = new List<IStubDefinition>()};
+            var simpleFile = new SimpleFileStubResource()  {Stubs = new List<IStubDefinition>()};
 
             using (var sr = File.OpenText(filename))
             {

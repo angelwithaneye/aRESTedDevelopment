@@ -10,6 +10,7 @@ using ARestedDevelopment.Models;
 using NUnit.Framework;
 using RestSharp;
 using RestStubb.IO;
+using RestStubb.Models;
 
 namespace RestStubb.Tests
 {
@@ -110,6 +111,38 @@ namespace RestStubb.Tests
 
                 });
             });
+
+            var generator = new Generator(file);
+
+            generator.GenerateProject();
+
+            generator.GenerateClient();
+
+            generator.GenerateServer();
+
+        }
+    }
+
+    public class Generator
+    {
+        public Generator(IStubResource resource)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GenerateProject()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GenerateClient()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GenerateServer()
+        {
+            throw new NotImplementedException();
         }
     }
 }
