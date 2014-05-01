@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ARestedDevelopment.Models;
 using RestStubb.Models;
 
 namespace RestStubb.IO
@@ -22,7 +23,7 @@ namespace RestStubb.IO
                 var s = String.Empty;
                 while ((s = sr.ReadLine()) != null)
                 {
-                    simpleFile.Stubs.Add(new StubDefinition());
+                    simpleFile.Stubs.Add(new StubDefinition(s));
                 }
             }
 

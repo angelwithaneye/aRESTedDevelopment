@@ -1,3 +1,2 @@
-[GET] https://localhost:6143/geoevent/admin
-[GET] https://localhost:6143/geoevent/admin/inputs
-[POST] https://localhost:6143/geoevent/admin/input
+[GET] https://gds0044s:6143/geoevent/admin
+[GET] [POST] https://gds0044s:6143/geoevent/admin/inputs

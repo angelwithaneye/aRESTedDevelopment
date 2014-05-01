@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace RestStubb.Models
+namespace ARestedDevelopment.Models
 {
     public interface IStubDefinition
     {
+        string StubStatement { get; set; }
+        List<MethodDefinition> Methods { get; }
+
+
+        void AddMethod(MethodDefinition methodDefinition);
+
     }
 }
