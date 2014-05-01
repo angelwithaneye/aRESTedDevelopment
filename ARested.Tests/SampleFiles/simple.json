@@ -1,0 +1,15 @@
+﻿{
+	"deftype":"simple",
+	"apptype":"web",
+	"appbootstrap":"nancy",
+	"defs":[
+			{
+				"root":"http://something.com/api",
+				"endpoints":[
+					{"methods":["GET"], "endpoint":"/admin/users"},
+					{"methods":["GET"], "endpoint":"/admin/roles"},
+					{"methods":["GET","POST"], "endpoint":"/admin/groups"}
+				]
+			}
+	]
+}

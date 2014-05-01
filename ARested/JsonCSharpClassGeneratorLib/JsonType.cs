@@ -3,12 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json.Linq;
-using System.Data.Entity.Design.PluralizationServices;
-using System.Globalization;
 
-namespace Xamasoft.JsonClassGenerator
+namespace ArestedDevelopment.JsonCSharpClassGeneratorLib
 {
     public class JsonType
     {

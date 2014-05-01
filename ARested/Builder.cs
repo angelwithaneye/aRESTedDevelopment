@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ARestedDevelopment.Models;
-using RestStubb.Models;
-using Xamasoft.JsonClassGenerator;
-using Xamasoft.JsonClassGenerator.CodeWriters;
+using ArestedDevelopment.JsonCSharpClassGeneratorLib;
+using ArestedDevelopment.JsonCSharpClassGeneratorLib.CodeWriters;
+using ArestedDevelopment.Models;
 
-namespace RestStubb
+namespace ArestedDevelopment
 {
     public class Builder
     {

@@ -1,38 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ArestedDevelopment.IO;
-using ArestedDevelopment.Models;
-using NUnit.Framework;
-using RestSharp;
 
-namespace ArestedDevelopment.Tests
+namespace ArestedDevelopment.Models
 {
-    [TestFixture]
-    public class TestIO
+    public class SimpleFileInterpreter : IInterpreter
     {
-        [Test]
-        public void ReadFile()
+        public bool Load()
         {
-            var fileReader = new FileReader();
-            var file = fileReader.LoadSimpleFile(@"C:\Projects\Other\ARestedDevelopment\ARested.Tests\SampleFiles\simple.txt");
+            var simpleFile = new SimpleFileInterpreter() { Stubs = new List<IStubDefinition>() };
 
-        }
+            using (var sr = File.OpenText(""))
+            {
+                var s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    simpleFile.Stubs.Add(new StubDefinition(s));
+                }
+            }
 
-
-        [Test]
-        public void ProcessFile()
-        {
-            //Trust all certificates
-            System.Net.ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) => true);
-
-            // where we start to read the url from
-            var rootStart = "/geoevent/admin";
-
-            var fileReader = new FileReader();
-            var file = fileReader.LoadSimpleFile(@"C:\Projects\Other\ARestedDevelopment\ARested.Tests\SampleFiles\simple.txt");
-
-            file.Stubs.ForEach(definition =>
+            simpleFile.Stubs.ForEach(definition =>
             {
                 var parts = definition.StubStatement.Split(' ');
 
@@ -53,7 +41,7 @@ namespace ArestedDevelopment.Tests
                 {
                     var methodFixed = method.TrimStart('[').TrimEnd(']').Trim().ToUpper();
                     var urlSegment = uri.AbsolutePath.Replace(rootStart, "").TrimStart('/').TrimEnd('/');
-                    
+
                     if (urlSegment == "")
                         urlSegment = "default";
 
@@ -105,20 +93,27 @@ namespace ArestedDevelopment.Tests
 
                 });
             });
+
+
+           
         }
 
+        public List<IStubDefinition> Stubs { get; set; }
 
-        public void TestJsonFile()
+
+        public Func<IResource, bool> CheckResource
         {
-            var fileReader = new FileReader();
-            var file = fileReader.LoadSimpleJson(@"C:\Projects\Other\ARestedDevelopment\ARested.Tests\SampleFiles\simple.json");
+            get
+            {
+                return resource =>
+                {
+                    if (resource.Type == "simpletext")
+                        return true;
 
-            //file.Stubs.
+                    return false;
 
+                };
+            }
         }
-
-
     }
-
-  
 }

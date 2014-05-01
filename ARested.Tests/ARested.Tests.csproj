@@ -7,8 +7,8 @@
     <ProjectGuid>{8E262254-9C25-4796-AC2E-03D4DABCA15F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestStubb.Tests</RootNamespace>
-    <AssemblyName>RestStubb.Tests</AssemblyName>
+    <RootNamespace>ArestedDevelopment.Tests</RootNamespace>
+    <AssemblyName>ArestedDevelopment.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -64,11 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestBuilder.cs" />
+    <Compile Include="TestWorkflows.cs" />
     <Compile Include="TestIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="SampleFiles\simple.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SampleFiles\simple.txt" />

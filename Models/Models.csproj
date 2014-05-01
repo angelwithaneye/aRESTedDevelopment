@@ -7,8 +7,8 @@
     <ProjectGuid>{81428F7D-9848-48FE-B29E-296A574478A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ARestedDevelopment.Models</RootNamespace>
-    <AssemblyName>ARestedDevelopment.Models</AssemblyName>
+    <RootNamespace>ArestedDevelopment.Models</RootNamespace>
+    <AssemblyName>ArestedDevelopment.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,13 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IInterpreter.cs" />
+    <Compile Include="IOutputProcessor.cs" />
+    <Compile Include="IResource.cs" />
+    <Compile Include="JsonFileModels.cs" />
     <Compile Include="IStubDefinition.cs" />
     <Compile Include="MethodDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleFileStubResource.cs" />
+    <Compile Include="SimpleFileInterpreter.cs" />
     <Compile Include="StubDefinition.cs" />
-    <Compile Include="UrlStubResource.cs" />
+    <Compile Include="JsonInterpreter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

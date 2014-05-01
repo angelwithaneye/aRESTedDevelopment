@@ -7,8 +7,8 @@
     <ProjectGuid>{2863D4CE-E6FD-487A-B73F-D194C0191937}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestStubb</RootNamespace>
-    <AssemblyName>RestStubb</AssemblyName>
+    <RootNamespace>ArestedDevelopment</RootNamespace>
+    <AssemblyName>ArestedDevelopment</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArDeveloper.cs" />
     <Compile Include="Builder.cs" />
     <Compile Include="IO\FileReader.cs" />
     <Compile Include="JsonCSharpClassGeneratorLib\CodeWriters\CSharpCodeWriter.cs" />

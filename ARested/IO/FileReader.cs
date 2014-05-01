@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ARestedDevelopment.Models;
-using RestStubb.Models;
+using ArestedDevelopment.Models;
 
-namespace RestStubb.IO
+namespace ArestedDevelopment.IO
 {
     /// <summary>
     /// Read dat file
     /// </summary>
     public class FileReader
     {
-        public IStubResource LoadSimpleFile(string filename)
+        public IInterpreter LoadSimpleFile(string filename)
         {
-            var simpleFile = new SimpleFileStubResource()  {Stubs = new List<IStubDefinition>()};
+            var simpleFile = new SimpleFileInterpreter()  {Stubs = new List<IStubDefinition>()};
 
             using (var sr = File.OpenText(filename))
             {
@@ -28,6 +24,25 @@ namespace RestStubb.IO
             }
 
             return simpleFile;
+        }
+
+        public IInterpreter LoadSimpleJson(string filename)
+        {
+            var jsonResource = new JsonInterpreter(null) { Stubs = new List<IStubDefinition>() };
+
+            var fileraw = File.ReadAllText(filename);
+
+            var jsonRoot = Newtonsoft.Json.JsonConvert.DeserializeObject<RootObject>(fileraw);
+
+            jsonRoot.defs.ForEach(def =>
+            {
+                var rootUrl = def.root;
+
+
+            });
+
+           
+            return jsonResource;
         }
     }
 }
