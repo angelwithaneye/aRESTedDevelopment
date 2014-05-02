@@ -6,6 +6,7 @@ namespace ArestedDevelopment.Models
     {
         public StubDefinition(string stubStatement)
         {
+            Methods = new List<MethodDefinition>();
             StubStatement = stubStatement;
         }
 

@@ -2,16 +2,61 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ArestedDevelopment.Models;
+using ArestedDevelopment.Models.Interpreters;
+using ArestedDevelopment.Models.Resources;
+using RestSharp;
 
-namespace ArestedDevelopment.Models
+namespace ArestedDevelopment.Interpreters
 {
-    public class SimpleFileInterpreter : IInterpreter
+    public class InterpreterResult : IInterpreterResult
     {
-        public bool Load()
+        public InterpreterResult()
         {
+            Bundles = new List<Bundle>();
+        }
+
+        public List<Bundle> Bundles { get; set; }
+    }
+
+    public class SimpleFileInterpreter : BaseInterpreter
+    {
+        public SimpleFileInterpreter(): base("text/simple")
+        {
+            //Trust all certificates
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) => true);
+
+        }
+
+        public override IInterpreterResult Process()
+        {
+            var result = new InterpreterResult();
+
+            // process all resources we can handle!
+            base.Resources.ForEach(resource =>
+            {
+               ProcessResource(resource, result);
+            });
+
+            return result;
+        }
+
+        private void ProcessResource(IResource resource, InterpreterResult result)
+        {
+            var uriResource = resource as UriResource;
+
+            if (uriResource == null)
+                throw new Exception("Cannot process resource of this type");
+
+            // just set some basic bundle properties for now...
+            var bundle = new Bundle() { Name = resource.Name, RefInterpreter = this, RefResource = resource };
+
+            //TODO: parameterize???
+            var rootStart = "/geoevent/admin";
+
             var simpleFile = new SimpleFileInterpreter() { Stubs = new List<IStubDefinition>() };
 
-            using (var sr = File.OpenText(""))
+            using (var sr = File.OpenText(uriResource.Uri))
             {
                 var s = String.Empty;
                 while ((s = sr.ReadLine()) != null)
@@ -19,6 +64,7 @@ namespace ArestedDevelopment.Models
                     simpleFile.Stubs.Add(new StubDefinition(s));
                 }
             }
+
 
             simpleFile.Stubs.ForEach(definition =>
             {
@@ -56,10 +102,10 @@ namespace ArestedDevelopment.Models
                         IRestClient client = new RestClient(uri.Scheme + "://" + uri.Authority);
                         client.Authenticator = new HttpBasicAuthenticator("rangeli", "GeoEvent2013#");
                         IRestRequest request = new RestRequest(uri.AbsolutePath);
-                        var result = client.Execute(request);
+                        var clientResult = client.Execute(request);
 
                         var builder = new Builder();
-                        var code = builder.Build(result.Content, urlSegment);
+                        var code = builder.Build(clientResult.Content, urlSegment);
 
                         // save file to project directory
 
@@ -91,29 +137,18 @@ namespace ArestedDevelopment.Models
                         definition.AddMethod(methodDef);
                     }
 
+                    // testing adding method names
+                    bundle.Methods.Add(methodName);
                 });
             });
 
+            // testing adding stubs
+            bundle.Stubs = simpleFile.Stubs;
 
-           
+            // add it to our bundle
+            result.Bundles.Add(bundle);
         }
 
-        public List<IStubDefinition> Stubs { get; set; }
 
-
-        public Func<IResource, bool> CheckResource
-        {
-            get
-            {
-                return resource =>
-                {
-                    if (resource.Type == "simpletext")
-                        return true;
-
-                    return false;
-
-                };
-            }
-        }
     }
 }

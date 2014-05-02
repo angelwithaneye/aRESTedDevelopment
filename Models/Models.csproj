@@ -39,16 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IInterpreter.cs" />
+    <Compile Include="Interpreters\BaseInterpreter.cs" />
+    <Compile Include="IArDeveloper.cs" />
+    <Compile Include="Interpreters\IInterpreter.cs" />
     <Compile Include="IOutputProcessor.cs" />
-    <Compile Include="IResource.cs" />
+    <Compile Include="IOutputProcessorConfig.cs" />
+    <Compile Include="IOutputProcessorResult.cs" />
+    <Compile Include="Resources\IResource.cs" />
     <Compile Include="JsonFileModels.cs" />
     <Compile Include="IStubDefinition.cs" />
+    <Compile Include="Resources\ManualResource.cs" />
     <Compile Include="MethodDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleFileInterpreter.cs" />
+    <Compile Include="Resources\Resource.cs" />
     <Compile Include="StubDefinition.cs" />
-    <Compile Include="JsonInterpreter.cs" />
+    <Compile Include="Resources\UriResource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

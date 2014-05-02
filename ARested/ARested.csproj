@@ -40,6 +40,7 @@
       <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Xml.Linq" />
@@ -50,7 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArDeveloper.cs" />
+    <Compile Include="ArDeveloperConfig.cs" />
+    <Compile Include="ArDeveloperFactory.cs" />
     <Compile Include="Builder.cs" />
+    <Compile Include="Interpreters\JsonInterpreter.cs" />
+    <Compile Include="Interpreters\ManualInterpreter.cs" />
+    <Compile Include="Interpreters\SimpleFileInterpreter.cs" />
     <Compile Include="IO\FileReader.cs" />
     <Compile Include="JsonCSharpClassGeneratorLib\CodeWriters\CSharpCodeWriter.cs" />
     <Compile Include="JsonCSharpClassGeneratorLib\CodeWriters\JavaCodeWriter.cs" />
@@ -64,6 +70,10 @@
     <Compile Include="JsonCSharpClassGeneratorLib\JsonType.cs" />
     <Compile Include="JsonCSharpClassGeneratorLib\JsonTypeEnum.cs" />
     <Compile Include="JsonCSharpClassGeneratorLib\Properties\Resources.Designer.cs" />
+    <Compile Include="OutputProcessors\BaseOutputProcessor.cs" />
+    <Compile Include="OutputProcessors\NancyOutputProcessor.cs" />
+    <Compile Include="OutputProcessors\SingleFileOutputProcessor.cs" />
+    <Compile Include="Plugin\PluginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

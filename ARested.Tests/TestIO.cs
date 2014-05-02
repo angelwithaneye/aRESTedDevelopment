@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using ArestedDevelopment.IO;
 using ArestedDevelopment.Models;
+using ArestedDevelopment.Models.Interpreters;
 using NUnit.Framework;
 using RestSharp;
 
@@ -11,6 +12,16 @@ namespace ArestedDevelopment.Tests
     [TestFixture]
     public class TestIO
     {
+        [Test]
+        public void TestSoemthing()
+        {
+            var path = AppDomain.CurrentDomain.BaseDirectory;
+
+            var type = typeof(IInterpreter);
+            var asms = AppDomain.CurrentDomain.GetAssemblies().Where((assembly => assembly.GetTypes().Any(type.IsAssignableFrom)));
+
+        }
+
         [Test]
         public void ReadFile()
         {
