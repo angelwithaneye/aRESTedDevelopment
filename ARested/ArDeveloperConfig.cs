@@ -8,6 +8,13 @@ namespace ArestedDevelopment
 {
     public class ArDeveloperConfig
     {
+        public ArDeveloperConfig()
+        {
+            PluginPaths = new List<string>();
+            EnablePlugins = false;
+        }
 
+        public bool EnablePlugins { get; set; }
+        public List<string> PluginPaths { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ArestedDevelopment.Models;
 using ArestedDevelopment.Models.Interpreters;
+using ArestedDevelopment.Models.OutputProcessor;
 
 namespace ArestedDevelopment.OutputProcessors
 {

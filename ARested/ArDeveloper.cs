@@ -5,6 +5,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using ArestedDevelopment.Models;
 using ArestedDevelopment.Models.Interpreters;
+using ArestedDevelopment.Models.OutputProcessor;
 using ArestedDevelopment.Models.Resources;
 using ArestedDevelopment.Plugin;
 
@@ -26,26 +27,22 @@ namespace ArestedDevelopment
         
         private List<string> _logger;
         
-        public ArDeveloper()
+        /// <summary>
+        /// default ctor.  Starts up with some basic defaults;  no plugins;  etc...
+        /// </summary>
+        public ArDeveloper() : this(config => { config.EnablePlugins = false; })
         {
-            _logger = new List<string>();
-
-            _interpreters = new List<IInterpreter>();
-            _resources = new List<IResource>();
-            _outputProcessors = new List<IOutputProcessor>();
-            
-            var manager = new PluginManager(@"C:\Projects\Other\ARestedDevelopment\ARested.PluginTests\bin\Debug");
-            //manager.LoadFromAppDomain(this);
-            //manager.LoadAll(this);
-
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configurator"></param>
         public ArDeveloper(Action<ArDeveloperConfig> configurator)
         {
             var config = new ArDeveloperConfig();
 
             _logger = new List<string>();
-
             _interpreters = new List<IInterpreter>();
             _resources = new List<IResource>();
             _outputProcessors = new List<IOutputProcessor>();
@@ -54,10 +51,14 @@ namespace ArestedDevelopment
                 configurator(config);
 
             // use config!
+            if (config.EnablePlugins)
+            {
+                var manager = new PluginManager(config.PluginPaths);
 
-            //var manager = new PluginManager(@"C:\Projects\Other\ARestedDevelopment\ARested.PluginTests\bin\Debug");
-            //manager.LoadAll(this);
-
+                manager.LoadExternal();
+                manager.LoadFromAppDomain();
+                manager.ApplyTo(this);
+            }
         }
 
         public bool AddInterpreter(IInterpreter interpreter)
@@ -90,12 +91,7 @@ namespace ArestedDevelopment
             return true;
         }
 
-        public void Test()
-        {
-            var t = this;
-        }
-
-        public object Develop()
+        public IArDeveloperOutput Develop()
         {
             // build workflow
             // marry up the resources, interpreters, and output processors!
@@ -121,11 +117,12 @@ namespace ArestedDevelopment
             {
                 var processResult = processor.GenerateOutput();
 
+               
                 // do something with the result
-
             });
 
-            return false;
+            //waht are we returning???
+            return new ArDeveloperOutput(){}
         }
 
         public ReadOnlyCollection<string> Logs {

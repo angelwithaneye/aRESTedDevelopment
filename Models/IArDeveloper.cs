@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using ArestedDevelopment.Models.Interpreters;
+using ArestedDevelopment.Models.OutputProcessor;
 using ArestedDevelopment.Models.Resources;
 
 namespace ArestedDevelopment.Models
@@ -16,6 +17,6 @@ namespace ArestedDevelopment.Models
         bool AddInterpreter(IInterpreter interpreter);
         bool AddOutputProcessor(IOutputProcessor processor);
         bool LoadResource(IResource resource);
-        object Develop();
+        IArDeveloperOutput Develop();
     }
 }

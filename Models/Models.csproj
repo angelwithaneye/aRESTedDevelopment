@@ -39,14 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IArDeveloperOutput.cs" />
     <Compile Include="Interpreters\BaseInterpreter.cs" />
     <Compile Include="IArDeveloper.cs" />
     <Compile Include="Interpreters\IInterpreter.cs" />
-    <Compile Include="IOutputProcessor.cs" />
-    <Compile Include="IOutputProcessorConfig.cs" />
-    <Compile Include="IOutputProcessorResult.cs" />
+    <Compile Include="Jsonfile\Def.cs" />
+    <Compile Include="Jsonfile\RootObject.cs" />
+    <Compile Include="OutputProcessor\IOutputProcessor.cs" />
+    <Compile Include="OutputProcessor\IOutputProcessorConfig.cs" />
+    <Compile Include="OutputProcessor\IOutputProcessorResult.cs" />
     <Compile Include="Resources\IResource.cs" />
-    <Compile Include="JsonFileModels.cs" />
+    <Compile Include="Jsonfile\Endpoint.cs" />
     <Compile Include="IStubDefinition.cs" />
     <Compile Include="Resources\ManualResource.cs" />
     <Compile Include="MethodDefinition.cs" />

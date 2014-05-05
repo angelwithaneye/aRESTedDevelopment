@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ArestedDevelopment.Models.Interpreters;
 
-namespace ArestedDevelopment.Models
+namespace ArestedDevelopment.Models.OutputProcessor
 {
     public interface IOutputProcessor
     {

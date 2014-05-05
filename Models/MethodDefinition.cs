@@ -9,7 +9,6 @@ namespace ArestedDevelopment.Models
         {
             Name = name;
             ReturnType = returnType;
-
             Parameters = new List<string>();
         }
 

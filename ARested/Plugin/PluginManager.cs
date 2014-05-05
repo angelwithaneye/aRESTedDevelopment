@@ -13,65 +13,42 @@ namespace ArestedDevelopment.Plugin
 {
     internal class PluginManager
     {
+        private AggregateCatalog _catalog;
         private CompositionContainer _container;
-        private string _pluginDir;
+        private List<string> _pluginDirs;
 
-        public PluginManager(string pluginDir)
+        public PluginManager(List<string> pluginDirs)
         {
-            _pluginDir = pluginDir;
+            _catalog = new AggregateCatalog();
+            _pluginDirs = pluginDirs ?? new List<string>();
         }
 
-
-        public void LoadAll(object loadInto)
+        public void LoadExternal()
         {
-            //An aggregate catalog that combines multiple catalogs
-            var catalog = new AggregateCatalog();
-
-            //Adds all the parts found in the same assembly as the Program class
-            catalog.Catalogs.Add(new DirectoryCatalog(_pluginDir, "*.dll"));
-
-            //Create the CompositionContainer with the parts in the catalog
-            _container = new CompositionContainer(catalog);
-
-            //Fill the imports of this object
-            try
-            {
-                this._container.ComposeParts(loadInto);
-            }
-            catch (CompositionException compositionException)
-            {
-                Console.WriteLine(compositionException.ToString());
-            }
+            _pluginDirs.ForEach(dir => _catalog.Catalogs.Add(new DirectoryCatalog(dir, "*.dll")));
         }
 
-
-        public void LoadFromAppDomain(object loadInto)
+        public void LoadFromAppDomain()
         {
-            //An aggregate catalog that combines multiple catalogs
-            var catalog = new AggregateCatalog();
-
-            //Adds all the parts found in the same assembly as the Program class
-
             var path = AppDomain.CurrentDomain.BaseDirectory;
 
             var type = typeof(IInterpreter);
             var asms = AppDomain.CurrentDomain.GetAssemblies().Where((assembly => assembly.GetTypes().Any(type.IsAssignableFrom)
                                                                                   && assembly.FullName != "ArestedDevelopment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
                                                                                   && assembly.FullName != "ArestedDevelopment.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")).ToList();
+            
+            asms.ForEach(assembly => _catalog.Catalogs.Add(new AssemblyCatalog(assembly)));
+        }
 
-            asms.ForEach(assembly =>
-            {
-                catalog.Catalogs.Add(new AssemblyCatalog(assembly));
-            });
-          
-
+        public void ApplyTo(object instance)
+        {
             //Create the CompositionContainer with the parts in the catalog
-            _container = new CompositionContainer(catalog);
+            _container = new CompositionContainer(_catalog);
 
             //Fill the imports of this object
             try
             {
-                this._container.ComposeParts(loadInto);
+                this._container.ComposeParts(instance);
             }
             catch (CompositionException compositionException)
             {

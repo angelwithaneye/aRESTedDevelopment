@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using ArestedDevelopment.Models;
+using ArestedDevelopment.Models.OutputProcessor;
 
 namespace ArestedDevelopment.OutputProcessors
 {
@@ -47,7 +48,8 @@ namespace ArestedDevelopment.OutputProcessors
             tw.Close();
             fileStream.Close();
 
-            return null;
+            // what do we need to return from here???
+            return new OutputProcessorResult(){Status = "ok", }
         }
 
         public override bool Init(IArDeveloper instance)

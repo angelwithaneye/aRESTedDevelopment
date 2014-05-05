@@ -72,6 +72,7 @@
     <Compile Include="JsonCSharpClassGeneratorLib\Properties\Resources.Designer.cs" />
     <Compile Include="OutputProcessors\BaseOutputProcessor.cs" />
     <Compile Include="OutputProcessors\NancyOutputProcessor.cs" />
+    <Compile Include="OutputProcessors\OutputProcessorResult.cs" />
     <Compile Include="OutputProcessors\SingleFileOutputProcessor.cs" />
     <Compile Include="Plugin\PluginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

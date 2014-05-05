@@ -9,11 +9,16 @@ namespace ARested.ExternalTests
 {
     public class Program
     {
+
         public static void Main(params string [] args)
         {
-            var ar = new ArestedDevelopment.ArDeveloper();
+            var ar = new ArestedDevelopment.ArDeveloper(config =>
+            {
+                config.EnablePlugins = true;
+            });
 
-
+            var result = ar.Develop();
+  
         }
     }
 }

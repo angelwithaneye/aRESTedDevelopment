@@ -1,8 +1,8 @@
-﻿using ArestedDevelopment.Models.Interpreters;
-using System;
+﻿using System;
 using System.ComponentModel.Composition;
+using ArestedDevelopment.Models.Interpreters;
 
-namespace ARested.PluginTests
+namespace ARested.ExternalTests
 {
     [Export(typeof(IInterpreter))]
     public class HrefInterpreter : BaseInterpreter
